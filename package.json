@@ -14,6 +14,7 @@
     "eslint-plugin-import": "^2.19.1"
   },
   "dependencies": {
-    "chevrotain": "^6.5.0"
+    "chevrotain": "^6.5.0",
+    "lodash": "^4.17.15"
   }
 }
