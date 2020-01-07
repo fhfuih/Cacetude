@@ -58,10 +58,10 @@ class Parser extends CstParser {
     });
 
     $.RULE('bitShiftExpr', () => {
-      $.SUBRULE($.additionExpr, { LABEL: 'base' });
+      $.SUBRULE($.additionExpr, { LABEL: 'lhs' });
       $.MANY(() => {
         $.CONSUME(BitShiftOperator);
-        $.SUBRULE2($.additionExpr, { LABEL: 'shift' });
+        $.SUBRULE2($.additionExpr, { LABEL: 'rhs' });
       });
     });
 

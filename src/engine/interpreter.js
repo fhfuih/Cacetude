@@ -58,11 +58,10 @@ class Interpreter extends BaseVisitor {
     return result;
   }
 
-  // TODO: Validate integer in bitShift
   bitShiftExpr(ctx) {
-    let result = this.visit(ctx.base);
-    if (ctx.shift) {
-      ctx.shift.forEach((rhsOperand, idx) => {
+    let result = this.visit(ctx.lhs);
+    if (ctx.rhs) {
+      ctx.rhs.forEach((rhsOperand, idx) => {
         const val = this.visit(rhsOperand);
         const op = ctx.BitShiftOperator[idx];
         if (tokenMatcher(op, LeftShift)) {
