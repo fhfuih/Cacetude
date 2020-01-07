@@ -15,12 +15,5 @@ const lexer = new Lexer(allTokens);
 
 module.exports = {
   tokens,
-  lex: (inputText) => {
-    const result = lexer.tokenize(inputText);
-    if (result.errors.length > 0) {
-      console.warn(result.errors);
-      throw new Error('Lexing errors');
-    }
-    return result;
-  },
+  lexer,
 };
