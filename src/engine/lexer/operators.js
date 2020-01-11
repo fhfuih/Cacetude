@@ -30,13 +30,13 @@ const Multiplication = createToken({
 
 const Division = createToken({
   name: 'Division',
-  pattern: /\/|mul|divide|divided by/,
+  pattern: /\/|mul|divide|divided by/i,
   categories: MultiplicationOperator,
 });
 
 const Modulo = createToken({
   name: 'Modulo',
-  pattern: /%|mod/,
+  pattern: /%|mod/i,
   categories: MultiplicationOperator,
 });
 
@@ -74,7 +74,7 @@ const BitOr = createToken({
 
 const BitXor = createToken({
   name: 'BitXor',
-  pattern: /xor/,
+  pattern: /xor/i,
 });
 
 module.exports = [
