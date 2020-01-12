@@ -16,8 +16,14 @@ const RParen = createToken({
   pattern: /\)/,
 });
 
+const Percent = createToken({
+  name: 'Percent',
+  pattern: /%|percent|per cent/i,
+});
+
 module.exports = [
   WhiteSpace,
   LParen,
   RParen,
+  Percent,
 ];

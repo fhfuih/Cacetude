@@ -78,7 +78,11 @@ class Interpreter extends BaseVisitor {
     let result = this.visit(ctx.lhs);
     if (ctx.rhs) {
       ctx.rhs.forEach((rhsOperand, idx) => {
-        const val = this.visit(rhsOperand);
+        let val = this.visit(rhsOperand);
+        const isPercent = this.visit(ctx.$percent[idx]);
+        if (isPercent) {
+          val = result * (val / 100);
+        }
         const op = ctx.AdditionOperator[idx];
         if (tokenMatcher(op, Plus)) {
           result += val;
@@ -88,6 +92,11 @@ class Interpreter extends BaseVisitor {
       });
     }
     return result;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  additionExpr$percent(ctx) {
+    return !!ctx.Percent;
   }
 
   multiplicationExpr(ctx) {
@@ -151,6 +160,11 @@ class Interpreter extends BaseVisitor {
 
   parenthesisExpr(ctx) {
     return this.visit(ctx.expression);
+  }
+
+  percentExpr(ctx) {
+    const base = this.visit(ctx.base);
+    return base / 100;
   }
 }
 

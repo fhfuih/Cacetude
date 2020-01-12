@@ -4,19 +4,9 @@ const Lexer = require('./lexer/lexer');
 const {
   LParen,
   RParen,
-  Decimal,
-  Binary,
-  Octal,
-  Hexadecimal,
+  Percent,
   Number,
-  Plus,
-  Minus,
-  Multiplication,
-  Division,
-  Modulo,
   Exponent,
-  LeftShift,
-  RightShift,
   BitAnd,
   BitOr,
   BitXor,
@@ -70,6 +60,10 @@ class Parser extends CstParser {
       $.MANY(() => {
         $.CONSUME(AdditionOperator);
         $.SUBRULE2($.multiplicationExpr, { LABEL: 'rhs' });
+        $.OPTION({
+          DEF: () => $.CONSUME(Percent),
+          NAME: '$percent',
+        });
       });
     });
 
